@@ -5,7 +5,6 @@ var wo = {
   tag: "",
   firstWord: function() {
     var arr = this.infowindow.content.split(/[\s,\d'-]+/);
-    console.log(arr);
     for(var i = 0; i < arr.length; i += 1) {
       // return first word that is no an empty string
       if(arr[i] != "") {
@@ -89,24 +88,12 @@ function startStopInstaFeed() {
   }
 }
 
-function dealWithResponse2(response){
-  var arr = response.data;
-  var container = document.getElementById('img_container');
-  for(var i = 0; i < arr.length; i += 1){
-    (function(i){
-      setTimeout(function(){
-        container.style.backgroundImage = "url('" + arr[i].images.standard_resolution.url + "')" || "url()";
-      },2000 * i + 1000);
-    })(i);
-  }
-}
 function getMapCenter()
 {
   var co = wo.map.getCenter();
   return {longitude: co.G, latitude: co.K}
 }
 $('body').click(getMapCenter);
-
 
 function codeLatLng(show) {
   var map = wo.map;
@@ -132,17 +119,4 @@ function codeLatLng(show) {
     }
   });
 
-}
-
-
-
-function findNonNumber(str) {
-  var startIndex = 0;
-  for(var i = 0; i < str.length; i += 1) {
-    if( isNaN( parseInt( str[i] ) ) ) {
-      startIndex = i;
-      return startIndex;
-    }
-  }
-  return startIndex;
 }
